@@ -1,3 +1,7 @@
+$logo-light: "{{LMS_HOST}}:8000/static/indigo/images/logo.png";
+$logo-dark: "{{LMS_HOST}}:8000/static/indigo/images/logo-white.png";
+
+
 // Include custom header
 body {
   .nav-skip {
@@ -283,9 +287,31 @@ header.global-header {
     }
 }
 
+.themed-logo {
+  width: 120px;
+  height: 30px;
+  position: relative;
+  background: no-repeat center/contain url(#{$logo-light});
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url(#{$logo-dark});
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms linear;
+  }
+}
 
 
 body.indigo-dark-theme {
+    .themed-logo::after {
+        opacity: 1;
+    }
     background: $body-bg-d !important;
     color: $text-color-d !important;
     .window-wrap {
