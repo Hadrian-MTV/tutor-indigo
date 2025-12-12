@@ -1,0 +1,24 @@
+const ThemedLogo = () => {
+  const BASE_URL = getConfig().LMS_BASE_URL;
+
+  return (
+    <>
+      <style>
+        {`
+          .themed-logo {
+            width: 120px;
+            height: 30px;
+            background: no-repeat center/contain url("${BASE_URL}/static/indigo/images/logo.png");
+          }
+
+          body.indigo-dark-theme .themed-logo {
+            background-image: url("${BASE_URL}/static/indigo/images/logo-white.png");
+          }
+        `}
+      </style>
+      <a href={`${BASE_URL}/dashboard`} className="logo" title="Logo">
+        <div class="themed-logo" role="img" aria-label="Acme logo"></div>
+      </a>
+    </>
+  );
+};
